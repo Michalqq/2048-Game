@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<style>
+.box {
+    background-color: lightblue;
+    top:100px;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    font-size: 50px;
+    text-align: center;
+}
+.row1 {
+     top:100px;  
+    }
+.row2 {
+     top:200px;  
+    }
+.row3 {
+     top:300px;  
+    }
+.row4 {
+     top:400px;  
+    }
+    .background {
+       background-color: lightblue; 
+    }
+    .background4 {
+       background-color: #FFFFE0;  
+    }
+    .background8 {
+        background-color: #FFFACD;
+    }
+    .background16 {
+        background-color: #EEE8AA;
+    }
+    .background32 {
+        background-color: #F0E68C;
+    }
+    .background64 {
+        background-color: #FFDAB9;
+    }
+    .background128 {
+        background-color: #FFA07A;
+    }
+    .background256 {
+        background-color: #FF7F50;
+    }
+    .background512 {
+        background-color: #FF6347;
+    }
+    .background1024 {
+        background-color: #FF4500;
+    }
+    .background2048 {
+        background-color: red;
+    }
+    </style>
+<head>
+<title>Gra - 2048</title>
+</head>
+<body>
+
+<h1>2048</h1>
+<p1 id="Points"> 4 </p1>
+
+<input id="1x1" class="box row1" style="row1; left: 5px" disabled><br>
+<input id="1x2" class="box row1" style="left: 105px" disabled><br>
+<input id="1x3" class="box row1" style="left: 205px" disabled><br>
+<input id="1x4" class="box row1" style="left: 305px" disabled><br>
+<input id="2x1" class="box row2" style="left: 5px" disabled><br>
+<input id="2x2" class="box row2" style="left: 105px" disabled><br>
+<input id="2x3" class="box row2" style="left: 205px" disabled><br>
+<input id="2x4" class="box row2" style="left: 305px" disabled><br>
+<input id="3x1" class="box row3" style="left: 5px" disabled><br>
+<input id="3x2" class="box row3" style="left: 105px" disabled><br>
+<input id="3x3" class="box row3" style="left: 205px" disabled><br>
+<input id="3x4" class="box row3" style="left: 305px" disabled><br>
+<input id="4x1" class="box row4" style="left: 5px" disabled><br>
+<input id="4x2" class="box row4" style="left: 105px" disabled><br>
+<input id="4x3" class="box row4" style="left: 205px" disabled><br>
+<input id="4x4" class="box row4" style="left: 305px" disabled><br>
+</body>
+</html>
+<script>
+document.getElementById("1x1").value=2;
+document.getElementById("1x2").value=2;
+document.getElementById("1x3").value=4;
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        // up arrow
+        if (moveBoxesUp()==1) {
+            document.getElementById("Points").innerHTML = backgroundColorChange();
+            addNumber();
+        } else {
+            if (isNull()==0) {
+                alert ("Koniec gry");
+                return;
+            }
+        }
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+        if (moveBoxesDown()==1) {
+            document.getElementById("Points").innerHTML = backgroundColorChange();
+            addNumber();
+        } else {
+            if (isNull()==0) {
+                alert ("Koniec gry");
+                return;
+            }
+        }
+    }
+    else if (e.keyCode == '37') {
+       // left arrow
+        if (moveBoxesLeft()==1) {
+            document.getElementById("Points").innerHTML = backgroundColorChange();
+            addNumber();
+        } else {
+            if (isNull()==0) {
+                alert ("Koniec gry");
+                return;
+            }
+        }
+    }
+    else if (e.keyCode == '39') {
+       // right arrow
+        if (moveBoxesRight()==1) {
+            document.getElementById("Points").innerHTML = backgroundColorChange();
+            addNumber();
+        } else {
+            if (isNull()==0) {
+                alert ("Koniec gry");
+                return;
+            }
+        }
+    }
+
+}
+function moveBoxesLeft() {
+    var moved=0;
+    var box1;
+    var box2;
+    var box3;
+    var box4;
+    for (i=1; i<5; i++){
+        if (i!=4){
+            for (k=1; k<5; k++){
+                for (j=i; j<5; j++){
+                    if (document.getElementById(k + "x" + i).value==""){
+                        if (document.getElementById(k + "x" + (i+1)).value!=""){
+                            moved=1;
+                        }
+                            document.getElementById(k + "x" + i).value=document.getElementById(k + "x" + (i+1)).value;
+                            document.getElementById(k + "x" + (i+1)).value="";
+                        switch (i) { 
+                            case 1:
+                                document.getElementById(k + "x" + (i+1)).value=document.getElementById(k + "x" + (i+2)).value;
+                                document.getElementById(k + "x" + (i+2)).value="";
+                                document.getElementById(k + "x" + (i+2)).value=document.getElementById(k + "x" + (i+3)).value;
+                                document.getElementById(k + "x" + (i+3)).value="";
+                                break;
+                            case 2:
+                                document.getElementById(k + "x" + (i+1)).value=document.getElementById(k + "x" + (i+2)).value;
+                                document.getElementById(k + "x" + (i+2)).value="";
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    for (i=4; i>0; i--){
+        box1 = document.getElementById(i+"x1");
+        box2 = document.getElementById(i+"x2");
+        box3 = document.getElementById(i+"x3");
+        box4 = document.getElementById(i+"x4");
+        if (box1.value==box2.value && box1.value!="") {
+            moved=1;
+            box1.value=2 * box1.value;
+            box2.value=box3.value;
+            box3.value=box4.value;
+        }
+        if (box2.value==box3.value && box2.value!="") {
+            moved=1;
+            box2.value=2 * box2.value;
+            box3.value=box4.value;
+        }
+        if (box3.value==box4.value && box3.value!="") {
+            moved=1;
+            box3.value=2 * box3.value;
+            box4.value="";
+        }
+    }
+     return moved;
+}
+  function moveBoxesRight() {
+    var moved=0;
+    var box1;
+    var box2;
+    var box3;
+    var box4;
+     for (i=4; i>0; i--){
+        if (i!=1){
+            for (k=1; k<5; k++){
+                for (j=i; j>0; j--){
+                    if (document.getElementById(k + "x" + i).value==""){
+                        if (document.getElementById(k + "x" + (i-1)).value!=""){
+                            moved=1;
+                        }
+                            document.getElementById(k + "x" + i).value=document.getElementById(k + "x" + (i-1)).value;
+                            document.getElementById(k + "x" + (i-1)).value="";
+                        switch (i) { 
+                            case 4:
+                                document.getElementById(k + "x" + (i-1)).value=document.getElementById(k + "x" + (i-2)).value;
+                                document.getElementById(k + "x" + (i-2)).value="";
+                                document.getElementById(k + "x" + (i-2)).value=document.getElementById(k + "x" + (i-3)).value;
+                                document.getElementById(k + "x" + (i-3)).value="";
+                                break;
+                            case 3:
+                                document.getElementById(k + "x" + (i-1)).value=document.getElementById(k + "x" + (i-2)).value;
+                                document.getElementById(k + "x" + (i-2)).value="";
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (i=1; i<5; i++){
+        box4 = document.getElementById(i+"x1");
+        box3 = document.getElementById(i+"x2");
+        box2 = document.getElementById(i+"x3");
+        box1 = document.getElementById(i+"x4");
+        if (box1.value==box2.value && box1.value!="") {
+            moved=1;
+            box1.value=2 * box1.value;
+            box2.value=box3.value;
+            box3.value=box4.value;
+        }
+        if (box2.value==box3.value && box2.value!="") {
+            moved=1;
+            box2.value=2 * box2.value;
+            box3.value=box4.value;
+        }
+        if (box3.value==box4.value && box3.value!="") {
+            moved=1;
+            box3.value=2 * box3.value;
+            box4.value="";
+        }
+        
+    }
+      return moved;
+}
+function moveBoxesUp() {
+    var moved=0;
+    var box1;
+    var box2;
+    var box3;
+    var box4;
+     for (i=1; i<5; i++){
+        if (i!=4){
+            for (k=1; k<5; k++){
+                for (j=i; j<5; j++){
+                    if (document.getElementById(i + "x" + k).value==""){
+                        if (document.getElementById((i+1) + "x" + k).value!=""){
+                            moved=1;
+                        }
+                            document.getElementById(i + "x" + k).value=document.getElementById((i+1) + "x" + k).value;
+                            document.getElementById((i+1) + "x" + k).value="";
+                        switch (i) { 
+                            case 1:
+                                document.getElementById((i+1) + "x" + k).value=document.getElementById((i+2) + "x" + k).value;
+                                document.getElementById((i+2) + "x" + k).value="";
+                                document.getElementById((i+2) + "x" + k).value=document.getElementById((i+3) + "x" + k).value;
+                                document.getElementById((i+3) + "x" + k).value="";
+                                break;
+                            case 2:
+                                document.getElementById((i+1) + "x" + k).value=document.getElementById((i+2) + "x" + k).value;
+                                document.getElementById((i+2) + "x" + k).value="";
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (i=4; i>0; i--){
+        box1 = document.getElementById("1x" + i);
+        box2 = document.getElementById("2x" + i);
+        box3 = document.getElementById("3x" + i);
+        box4 = document.getElementById("4x" + i);
+        if (box1.value==box2.value && box1.value!="") {
+            moved=1;
+            box1.value=2 * box1.value;
+            box2.value=box3.value;
+            box3.value=box4.value;
+        }
+        if (box2.value==box3.value && box2.value!="") {
+            moved=1;
+            box2.value=2 * box2.value;
+            box3.value=box4.value;
+        }
+        if (box3.value==box4.value && box3.value!="") {
+            moved=1;
+            box3.value=2 * box3.value;
+            box4.value="";
+        }
+    }
+     return moved;
+} 
+function moveBoxesDown() {
+    var moved=0;
+    var box1;
+    var box2;
+    var box3;
+    var box4;
+     for (i=4; i>0; i--){
+        if (i!=1){
+            for (k=1; k<5; k++){
+                for (j=i; j>0; j--){
+                    if (document.getElementById(i + "x" + k).value==""){
+                        if (document.getElementById((i-1) + "x" + k).value!=""){
+                            moved=1;
+                        }
+                            document.getElementById(i + "x" + k).value=document.getElementById((i-1) + "x" + k).value;
+                            document.getElementById((i-1) + "x" + k).value="";
+                        switch (i) { 
+                            case 4:
+                                document.getElementById((i-1) + "x" + k).value=document.getElementById((i-2) + "x" + k).value;
+                                document.getElementById((i-2) + "x" + k).value="";
+                                document.getElementById((i-2) + "x" + k).value=document.getElementById((i-3) + "x" + k).value;
+                                document.getElementById((i-3) + "x" + k).value="";
+                                break;
+                            case 3:
+                                document.getElementById((i-1) + "x" + k).value=document.getElementById((i-2) + "x" + k).value;
+                                document.getElementById((i-2) + "x" + k).value="";
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (i=4; i>0; i--){
+        box4 = document.getElementById("1x" + i);
+        box3 = document.getElementById("2x" + i);
+        box2 = document.getElementById("3x" + i);
+        box1 = document.getElementById("4x" + i);
+        if (box1.value==box2.value && box1.value!="") {
+            moved=1;
+            box1.value=2 * box1.value;
+            box2.value=box3.value;
+            box3.value=box4.value;
+        }
+        if (box2.value==box3.value && box2.value!="") {
+            moved=1;
+            box2.value=2 * box2.value;
+            box3.value=box4.value;
+        }
+        if (box3.value==box4.value && box3.value!="") {
+            moved=1;
+            box3.value=2 * box3.value;
+            box4.value="";
+        }
+    }
+    return moved;
+}  
+function addNumber() {
+    var temp=0;
+    var rowIndex=0;
+    var colIndex=0;
+      while (temp==0){
+          rowIndex=parseFloat((Math.random()*3)+1).toFixed(0);
+          colIndex=parseFloat((Math.random()*3)+1).toFixed(0);
+          if (document.getElementById(rowIndex + "x" + colIndex).value == "") {
+              document.getElementById(rowIndex + "x" + colIndex).value=2;
+              
+              temp=1;
+          }
+      }
+}
+function isNull() {
+    for (i=1; i<5; i++) {
+        for (k=1; k<5; k++) {
+            if (document.getElementById(k + "x" + i).value=="") {
+                return 1;
+            } 
+        }
+    }
+return 0;
+}
+function backgroundColorChange(){
+    var sumPoint=2;
+    for (i=1; i<5; i++) {
+        for (k=1; k<5; k++) {
+            var text=document.getElementById(k + "x" + i).className;
+                document.getElementById(k + "x" + i).className=text.substring(0,8);
+            if (document.getElementById(k + "x" + i).value!="") {
+                document.getElementById(k + "x" + i).className=document.getElementById(k + "x" + i).className + " " + "background" + document.getElementById(k + "x" + i).value;
+                sumPoint=sumPoint + parseFloat(document.getElementById(k + "x" + i).value);
+            }
+        }
+    }
+    return sumPoint*2;
+}
+</script>
