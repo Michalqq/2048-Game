@@ -56,14 +56,32 @@ function checkKey(e) {
     }
 
 }
-function startTime() {
-    var text=0.0;
-    var myVar = setInterval(myTimer, 100);
 
+function startTime(index) {
+    var myVar = setInterval(myTimer, 100);
+    if (index==1){
+        clearInterval(myVar);
+        text=0.0;
+        return;
+    }
+    var text=0.0;
     function myTimer() {
         text=text + 0.1;        
         document.getElementById("PlayTime").innerHTML = parseFloat(text).toFixed(1) + " s.";
     }
+}
+function Restart() {
+    startTime(1);
+    document.getElementById("PlayTime").innerHTML = "0 s."
+    document.getElementById("Points").innerHTML = "4";
+    document.getElementById("1x1").value=2;
+    document.getElementById("1x2").value=2;
+    for (i=1; i<5; i++) {
+        for (k=1; k<5; k++) {
+            document.getElementById(k + "x" + i).value=""; 
+        }
+    }
+    document.location.reload()
 }
 function moveBoxesLeft() {
     var moved=0;
