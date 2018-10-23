@@ -54,7 +54,6 @@ function checkKey(e) {
             }
         }
     }
-
 }
 
 function startTime(index) {
