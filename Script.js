@@ -54,6 +54,7 @@ function checkKey(e) {
             }
         }
     }
+
 }
 
 function startTime(index) {
@@ -124,17 +125,20 @@ function moveBoxesLeft() {
         if (box1.value==box2.value && box1.value!="") {
             moved=1;
             box1.value=2 * box1.value;
+            bigBox(box1);
             box2.value=box3.value;
             box3.value=box4.value;
         }
         if (box2.value==box3.value && box2.value!="") {
             moved=1;
             box2.value=2 * box2.value;
+            bigBox(box2);
             box3.value=box4.value;
         }
         if (box3.value==box4.value && box3.value!="") {
             moved=1;
             box3.value=2 * box3.value;
+            bigBox(box3);
             box4.value="";
         }
     }
@@ -181,17 +185,20 @@ function moveBoxesLeft() {
         if (box1.value==box2.value && box1.value!="") {
             moved=1;
             box1.value=2 * box1.value;
+            bigBox(box1);
             box2.value=box3.value;
             box3.value=box4.value;
         }
         if (box2.value==box3.value && box2.value!="") {
             moved=1;
             box2.value=2 * box2.value;
+            bigBox(box2);
             box3.value=box4.value;
         }
         if (box3.value==box4.value && box3.value!="") {
             moved=1;
             box3.value=2 * box3.value;
+            bigBox(box3);
             box4.value="";
         }
         
@@ -239,17 +246,20 @@ function moveBoxesUp() {
         if (box1.value==box2.value && box1.value!="") {
             moved=1;
             box1.value=2 * box1.value;
+            bigBox(box1);
             box2.value=box3.value;
             box3.value=box4.value;
         }
         if (box2.value==box3.value && box2.value!="") {
             moved=1;
             box2.value=2 * box2.value;
+            bigBox(box2);
             box3.value=box4.value;
         }
         if (box3.value==box4.value && box3.value!="") {
             moved=1;
             box3.value=2 * box3.value;
+            bigBox(box3);
             box4.value="";
         }
     }
@@ -296,17 +306,20 @@ function moveBoxesDown() {
         if (box1.value==box2.value && box1.value!="") {
             moved=1;
             box1.value=2 * box1.value;
+            bigBox(box1);
             box2.value=box3.value;
             box3.value=box4.value;
         }
         if (box2.value==box3.value && box2.value!="") {
             moved=1;
             box2.value=2 * box2.value;
+            bigBox(box2);
             box3.value=box4.value;
         }
         if (box3.value==box4.value && box3.value!="") {
             moved=1;
             box3.value=2 * box3.value;
+            bigBox(box3);
             box4.value="";
         }
     }
@@ -335,6 +348,11 @@ function isNull() {
         }
     }
 return 0;}
+function bigBox(box){
+    box.className=box.className.replace("box","boX");
+    setTimeout(function(){
+        box.className=box.className.replace("boX","box");},200);
+}
 function backgroundColorChange(){
     var sumPoint=2;
     for (i=1; i<5; i++) {
@@ -342,7 +360,8 @@ function backgroundColorChange(){
             var text=document.getElementById(k + "x" + i).className;
                 document.getElementById(k + "x" + i).className=text.substring(0,8);
             if (document.getElementById(k + "x" + i).value!="") {
-                document.getElementById(k + "x" + i).className=document.getElementById(k + "x" + i).className + " " + "background" + document.getElementById(k + "x" + i).value;
+                document.getElementById(k + "x" + i).className=document.getElementById(k + "x" + i).className + " " + "background" + 
+                document.getElementById(k + "x" + i).value;
                 sumPoint=sumPoint + parseFloat(document.getElementById(k + "x" + i).value);
             }
         }

@@ -3,8 +3,10 @@ head {
 }
 body {
     position: absolute;
-    margin-top: 5px;
-    background-color:
+    background-color:gainsboro;
+    text-align: center;
+    width: auto;
+    
 }
 p1 {
     font-size: 20px;
@@ -12,13 +14,34 @@ p1 {
 p2 {
     font-size: 20px;
 }
+.div1{
+    margin-top: 5px;
+    background-color: grey;
+    width: 395px;
+    height: 405px;
+    -webkit-box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
+-moz-box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
+box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
+    border-radius: 10px;
+    
+}
 .box {
+    border-radius: 10px;
     background-color: lightblue;
     top:100px;
     width: 80px;
     height: 80px;
     position: absolute;
     font-size: 40px;
+    text-align: center;
+}
+.boX {
+    border-radius: 20px;
+    background-color: lightblue;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    font-size: 55px;
     text-align: center;
 }
 .row1 {
