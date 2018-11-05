@@ -6,65 +6,70 @@ function checkKey(e) {
         {
             startTime();
         }
-    if (e.keyCode == '38') {
-        // up arrow
-        if (moveBoxesUp()==1) {
+    switch (e.keyCode){
+        case 38:
+                // up arrow
+            UpMove();
+             /*if (moveBoxesUp()==1) {
+                document.getElementById("Points").innerHTML = backgroundColorChange();
+                addNumber();
+            } else {
+                if (isNull()==0) {
+                    alert ("Koniec gry");
+                    return;
+                }
+            }*/ break;
+        case 40:
+               // down arrow
+            DownMove();
+            /*if (moveBoxesDown()==1) {
+                document.getElementById("Points").innerHTML = backgroundColorChange();
+                addNumber();
+            } else {
+                if (isNull()==0) {
+                    alert ("Koniec gry");
+                    return;
+                }
+            } */break;
+        case 37:
+               // left arrow
+            LeftMove();
+            /*if (moveBoxesLeft()==1) {
+                document.getElementById("Points").innerHTML = backgroundColorChange();
+                addNumber();
+            } else {
+                if (isNull()==0) {
+                    alert ("Koniec gry");
+                    return;
+                }
+            } */
+            break;
+        case 39:
+            // right arrow
+            RightMove();
+        /*if (moveBoxesRight()==1) {
             document.getElementById("Points").innerHTML = backgroundColorChange();
             addNumber();
         } else {
             if (isNull()==0) {
                 alert ("Koniec gry");
                 return;
-            }
-        }
+            }*/
+        /*}*/ break;
     }
-    else if (e.keyCode == '40') {
-        // down arrow
-        if (moveBoxesDown()==1) {
-            document.getElementById("Points").innerHTML = backgroundColorChange();
-            addNumber();
-        } else {
-            if (isNull()==0) {
-                alert ("Koniec gry");
-                return;
-            }
-        }
-    }
-    else if (e.keyCode == '37') {
-       // left arrow
-        if (moveBoxesLeft()==1) {
-            document.getElementById("Points").innerHTML = backgroundColorChange();
-            addNumber();
-        } else {
-            if (isNull()==0) {
-                alert ("Koniec gry");
-                return;
-            }
-        }
-    }
-    else if (e.keyCode == '39') {
-       // right arrow
-        if (moveBoxesRight()==1) {
-            document.getElementById("Points").innerHTML = backgroundColorChange();
-            addNumber();
-        } else {
-            if (isNull()==0) {
-                alert ("Koniec gry");
-                return;
-            }
-        }
-    }
-
+    
 }
-
+function endOfGame() {
+    alert("Koniec gry")
+}
 function startTime(index) {
-    var myVar = setInterval(myTimer, 100);
+    let myVar = setInterval(myTimer, 100);
     if (index==1){
         clearInterval(myVar);
         text=0.0;
         return;
     }
-    var text=0.0;
+    let text=0.0;
     function myTimer() {
         text=text + 0.1;        
         document.getElementById("PlayTime").innerHTML = parseFloat(text).toFixed(1) + " s.";
@@ -82,6 +87,129 @@ function Restart() {
         }
     }
     document.location.reload()
+}
+function LeftMove(){
+    let tab=[0,0,0,0,0];
+    for (let k=1; k<5; k++){
+        tab=[0,0,0,0,0];
+        ActualTab(tab, k, 0);
+        for (let i=1; i<5; i++){
+            Move(tab,i-1,0);
+            if (isNaN(tab[i-1]) || tab[i-1]==undefined) tab[i-1]=0;
+            if (tab[i-1]!=0) document.getElementById(k + "x" + i).value=tab[i-1];
+            else document.getElementById(k + "x" + i).value="";
+        }
+    }
+}
+function UpMove(){
+    let tab=[0,0,0,0,0];
+    for (let k=1; k<5; k++){
+        tab=[0,0,0,0,0];
+        ActualTab(tab, k, 1);
+        for (let i=1; i<5; i++){
+            Move(tab,i-1,0);
+            if (isNaN(tab[i-1]) || tab[i-1]==undefined) tab[i-1]=0;
+            if (tab[i-1]!=0) document.getElementById(i + "x" + k).value=tab[i-1];
+            else document.getElementById(i + "x" + k).value="";
+        }
+    }
+}
+function RightMove(){
+    let tab=[0,0,0,0,0];
+    for (let k=1; k<5; k++){
+        tab=[0,0,0,0,0];
+        ActualTab(tab, k, 0);
+        for (let i=4; i>0; i--){
+            Move(tab,i-1,1);
+            if (isNaN(tab[i-1]) || tab[i-1]==undefined) tab[i-1]=0;
+            if (tab[i-1]!=0) document.getElementById(k + "x" + i).value=tab[i-1];
+            else document.getElementById(k + "x" + i).value="";
+        }
+    }
+}
+function DownMove(){
+    let tab=[0,0,0,0,0];
+    for (let k=1; k<5; k++){
+        tab=[0,0,0,0,0];
+        ActualTab(tab, k, 1);
+        for (let i=4; i>0; i--){
+            Move(tab,i-1,1);
+            if (isNaN(tab[i-1]) || tab[i-1]==undefined) tab[i-1]=0;
+            if (tab[i-1]!=0) document.getElementById(i + "x" + k).value=tab[i-1];
+            else document.getElementById(i + "x" + k).value="";
+        }
+    }
+}
+function ActualTab(tab, k, direction) {
+    //direction = 0 horizontal
+    //direction = 1 vertical
+    for (let i=1; i<5; i++){
+            switch (direction){
+                case 0:
+                    tab[i-1]=parseFloat(document.getElementById(k + "x" + i).value);
+                    break;
+                case 1:
+                    tab[i-1]=parseFloat(document.getElementById(i + "x" + k).value);    
+                    break;
+            }
+            if (isNaN(tab[i-1])) tab[i-1]=0;
+        }
+                return tab;
+}
+function Move(tab,startIndex,direction){
+    moveTab(tab,startIndex,direction);
+    moveTab(tab,startIndex,direction);
+    moveTab(tab,startIndex,direction);
+    if (MergeAdjoin(tab,startIndex,direction)==1) {
+        moveTab(tab,startIndex,direction);
+    }
+}
+function MergeAdjoin(tab, startIndex, direction) {
+    //direction = 0 - left or down
+    //direction = 1 - right or up
+    switch (direction){
+        case 0:
+            i=startIndex;
+            index=1;
+            break;
+        case 1:
+            i=startIndex;
+            index=-1;
+            break;
+    }
+    let returnedValue=0;
+    while (i>=0 && i<4) {;
+        if (tab[i]==tab[i+index] && tab[i]!=0) {
+            tab[i]=2*tab[i];
+            tab[i+index]=0;
+            returnedValue=1;
+        }
+        i=i+index;
+    }
+    return returnedValue;
+}
+function moveTab(tab,startIndex, direction){
+    //direction = 0 - left or down
+    //direction = 1 - right or up
+    switch (direction){
+        case 0:
+            i=startIndex;
+            index=1;
+            break;
+        case 1:
+            i=startIndex;
+            index=-1;
+            break;
+    }
+    while (i>=0 && i<4) {
+        if (tab[i]==0 || tab[i]=="") {
+            if (tab[i+index]==undefined) tab[i+index]=0;
+            tab[i]=tab[i+index];
+            tab[i+index]=0;
+        }
+        i=i+index;
+    }
+    //MergeAdjoin(tab,direction,startIndex);
 }
 function moveBoxesLeft() {
     var moved=0;
@@ -144,7 +272,7 @@ function moveBoxesLeft() {
     }
      return moved;
 }
-  function moveBoxesRight() {
+function moveBoxesRight() {
     var moved=0;
     var box1;
     var box2;

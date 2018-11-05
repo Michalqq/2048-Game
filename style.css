@@ -5,7 +5,7 @@ body {
     position: absolute;
     background-color:gainsboro;
     text-align: center;
-    width: auto;
+    
     
 }
 p1 {
@@ -14,16 +14,21 @@ p1 {
 p2 {
     font-size: 20px;
 }
+p2.ex1 {
+    position: absolute;
+    margin-top: 120px;
+    width: 395px;
+    left: 0px;
+}
 .div1{
     margin-top: 5px;
     background-color: grey;
     width: 395px;
     height: 405px;
     -webkit-box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
--moz-box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
-box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
+    -moz-box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
+    box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
     border-radius: 10px;
-    
 }
 .box {
     border-radius: 10px;
