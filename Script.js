@@ -168,7 +168,7 @@ function MergeAdjoin(tab, startIndex, direction) {
 function moveTab(tab,startIndex, direction){
     //direction = 0 - left or down
     //direction = 1 - right or up
-    let mouved = 0;
+    //let mouved = 0;
     switch (direction){
         case 0:
             i=startIndex;
