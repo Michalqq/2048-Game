@@ -1,5 +1,6 @@
 //Javascript
 function checkKey(e) {
+
     e = e || window.event;
     if (document.getElementById("PlayTime").innerHTML==" 0 s.")
         {
@@ -23,6 +24,7 @@ function checkKey(e) {
             if (RightMove()==1) addNumber();
             break;
     }
+    
 }
 function endOfGame() {
     alert("Koniec gry")
