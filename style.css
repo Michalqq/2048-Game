@@ -2,6 +2,7 @@ head {
     
 }
 body {
+    width:99%;
     background-color:gainsboro;
 }
 p1 {
@@ -24,12 +25,13 @@ p2.ex1 {
     border-radius: 10px;
 }
 .box {
+    display:grid;
+    justify-content: center;
     border-radius: 10px;
     background-color: lightblue;
     top:100px;
     width: 80px;
     height: 80px;
-    position: absolute;
     font-size: 40px;
     text-align: center;
 }
