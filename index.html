@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="Script.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="style.css">
 <title>Gra - 2048</title>
+<div class="row" style="text-align: center">
+    <div class="col" >
+        <h1>Gra - 2048</h1>
+        <p1> Twoja liczba punktów: </p1>
+        <p1 id="Points"> 4 </p1>
+        <br>
+        <p2> Czas gry: </p2>
+        <p2 id="PlayTime"> 0 s.</p2>
+        <button id= "Restart" type="button" style="width: 100px; height: 40px; position: absolute; top: 590px; left:150px" onclick="Restart()">Od nowa</button>
+    </div>
+  
+</div>
 
-<h1>Gra - 2048</h1>
-<p1> Twoja liczba punktów: </p1>
-<p1 id="Points"> 4 </p1>
-<br>
-<p2> Czas gry: </p2>
-<p2 id="PlayTime"> 0 s.</p2>
-<button id= "Restart" type="button" style="width: 100px; height: 40px; position: absolute; top: 590px; left:150px" onclick="Restart()">Od nowa</button>
 </head>
 <body>
-<div class="div1">
+<div class="container">
+<div class="row justify-content-center">
+<div class="div1 row" style="align-items: center">
 <input id="1x1" class="box row1" style="row1; left: 5px" disabled><br>
 <input id="1x2" class="box row1" style="left: 105px" disabled><br>
 <input id="1x3" class="box row1" style="left: 205px" disabled><br>
-<input id="1x4" class="box row1" style="left: 305px" disabled><br>
+<input id="1x4" class="box row1" style="left: 355px" disabled><br>
 <input id="2x1" class="box row2" style="left: 5px" disabled><br>
 <input id="2x2" class="box row2" style="left: 105px" disabled><br>
 <input id="2x3" class="box row2" style="left: 205px" disabled><br>
@@ -34,10 +42,16 @@
 <input id="4x3" class="box row4" style="left: 205px" disabled><br>
 <input id="4x4" class="box row4" style="left: 305px" disabled><br>
 </div>
-
-<p2 class="ex1">JAK GRAĆ: Użyj klawiszy strzałek, aby przesunąć płytki. Po każdym ruchu na wolnym polu pojawia się jeden klocek o wartości 2. Jeżeli dwa klocki o tej samej wartości połączą się w czasie ruchu, stworzą jeden klocek o wartości ich sumy. Zsumowany klocek nie może się już łączyć z innymi w tym samym ruchu.</p2>
+</div>
+<div class="row justify-content-center">
+<div class="col-md-6" style="text-align:center; top:20px">
+<p2>JAK GRAĆ: Użyj klawiszy strzałek, aby przesunąć płytki. Po każdym ruchu na wolnym polu pojawia się jeden klocek o wartości 2. Jeżeli dwa klocki o tej samej wartości połączą się w czasie ruchu, stworzą jeden klocek o wartości ich sumy. Zsumowany klocek nie może się już łączyć z innymi w tym samym ruchu.</p2>
+    </div>
+    </div>
+    </div>
 <!--<button id= "up" type="button" style="width: 50px; height: 50px; position: absolute; top: 150px; left:500px" onclick="btnPress()">UP</button>
 <button id= "down" type="button" style="width: 50px; height: 50px; position: absolute; top: 200px; left:500px" onclick="btnPress()">DOWN</button>-->
+
 </body>
 </html>
 <script>

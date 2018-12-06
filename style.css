@@ -1,12 +1,8 @@
 head {
-    position: absolute;
+    
 }
 body {
-    position: absolute;
     background-color:gainsboro;
-    text-align: center;
-    
-    
 }
 p1 {
     font-size: 20px;
@@ -15,10 +11,7 @@ p2 {
     font-size: 20px;
 }
 p2.ex1 {
-    position: absolute;
-    margin-top: 120px;
-    width: 395px;
-    left: 0px;
+    margin-top: 180px;
 }
 .div1{
     margin-top: 5px;
