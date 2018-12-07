@@ -10,22 +10,22 @@ function checkKey(e) {
         case 38:
                 // up arrow
             if (UpMove()==1) addNumber();
-            backgroundColorChange()
+            document.getElementById("Points").innerHTML = backgroundColorChange();
             break;
         case 40:
                // down arrow
             if (DownMove()==1) addNumber();
-            backgroundColorChange()
+            document.getElementById("Points").innerHTML = backgroundColorChange();
             break;
         case 37:
                // left arrow
             if (LeftMove()==1) addNumber();
-            backgroundColorChange()
+            document.getElementById("Points").innerHTML = backgroundColorChange();
             break;
         case 39:
             // right arrow
             if (RightMove()==1) addNumber();
-            backgroundColorChange()
+            document.getElementById("Points").innerHTML = backgroundColorChange();
             break;
     }
     
@@ -47,7 +47,7 @@ function startTime(index) {
     }
 }
 function Restart() {
-    startTime(1);
+    /*startTime(1);
     document.getElementById("PlayTime").innerHTML = "0 s."
     document.getElementById("Points").innerHTML = "4";
     document.getElementById("1x1").value=2;
@@ -56,7 +56,7 @@ function Restart() {
         for (k=1; k<5; k++) {
             document.getElementById(k + "x" + i).value=""; 
         }
-    }
+    }*/
     document.location.reload()
 }
 function LeftMove(){
@@ -209,7 +209,7 @@ function moveTab(tab,startIndex, direction){
     if (oldTab != tab) mouved = 1;
     return mouved;
 }
-function moveBoxesLeft() {
+/*function moveBoxesLeft() {
     var moved=0;
     var box1;
     var box2;
@@ -450,7 +450,7 @@ function moveBoxesDown() {
         }
     }
     return moved;
-}  
+}  */
 function addNumber() {
     var temp=0;
     var rowIndex=0;
