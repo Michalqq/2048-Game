@@ -15,32 +15,32 @@
         <br>
         <p2> Czas gry: </p2>
         <p2 id="PlayTime"> 0 s.</p2>
-        <button id= "Restart" type="button" style="width: 100px; height: 40px;top: 590px; left:150px" onclick="Restart()">Od nowa</button>
+        <button id= "Restart" type="button" style="width: 100px; height: 40px;top: 590px; left:150px" onclick="Restart()">Od nowa</button><br>
     </div>
   
 </div>
 
 </head>
-<body>
+<body onLoad="addNumber(); addNumber()">
 <div class="container">
 <div class="row justify-content-center">
 <div class="div1">
-<input id="1x1" class="box row1" style="row1; left: 5px" disabled><br>
-<input id="1x2" class="box row1" style="left: 105px" disabled><br>
-<input id="1x3" class="box row1" style="left: 205px" disabled><br>
+<input id="1x1" class="box row1" style="row1; left: 5px" disabled>
+<input id="1x2" class="box row1" style="left: 105px" disabled>
+<input id="1x3" class="box row1" style="left: 205px" disabled>
 <input id="1x4" class="box row1" style="left: 305px" disabled><br>
-<input id="2x1" class="box row2" style="left: 5px" disabled><br>
-<input id="2x2" class="box row2" style="left: 105px" disabled><br>
-<input id="2x3" class="box row2" style="left: 205px" disabled><br>
+<input id="2x1" class="box row2" style="left: 5px" disabled>
+<input id="2x2" class="box row2" style="left: 105px" disabled>
+<input id="2x3" class="box row2" style="left: 205px" disabled>
 <input id="2x4" class="box row2" style="left: 305px" disabled><br>
-<input id="3x1" class="box row3" style="left: 5px" disabled><br>
-<input id="3x2" class="box row3" style="left: 105px" disabled><br>
-<input id="3x3" class="box row3" style="left: 205px" disabled><br>
+<input id="3x1" class="box row3" style="left: 5px" disabled>
+<input id="3x2" class="box row3" style="left: 105px" disabled>
+<input id="3x3" class="box row3" style="left: 205px" disabled>
 <input id="3x4" class="box row3" style="left: 305px" disabled><br>
-<input id="4x1" class="box row4" style="left: 5px" disabled><br>
-<input id="4x2" class="box row4" style="left: 105px" disabled><br>
-<input id="4x3" class="box row4" style="left: 205px" disabled><br>
-<input id="4x4" class="box row4" style="left: 305px" disabled><br>
+<input id="4x1" class="box row4" style="left: 5px" disabled>
+<input id="4x2" class="box row4" style="left: 105px" disabled>
+<input id="4x3" class="box row4" style="left: 205px" disabled>
+<input id="4x4" class="box row4" style="left: 305px" disabled>
 </div>
 </div>
 <div class="row justify-content-center">
@@ -55,7 +55,5 @@
 </body>
 </html>
 <script>
-document.getElementById("1x1").value=2;
-document.getElementById("1x2").value=2;
 document.onkeydown = checkKey;
 </script>

@@ -10,18 +10,22 @@ function checkKey(e) {
         case 38:
                 // up arrow
             if (UpMove()==1) addNumber();
+            backgroundColorChange()
             break;
         case 40:
                // down arrow
             if (DownMove()==1) addNumber();
+            backgroundColorChange()
             break;
         case 37:
                // left arrow
             if (LeftMove()==1) addNumber();
+            backgroundColorChange()
             break;
         case 39:
             // right arrow
             if (RightMove()==1) addNumber();
+            backgroundColorChange()
             break;
     }
     
@@ -62,7 +66,8 @@ function LeftMove(){
         tab=[0,0,0,0,0];
         ActualTab(tab, k, 0);
         for (let i=1; i<5; i++){
-            mouved = Move(tab,i-1,0);
+            if (mouved == 0 ) mouved = Move(tab,i-1,0, k, 0);
+            else Move(tab,i-1,0, k, 0);
             if (isNaN(tab[i-1]) || tab[i-1]==undefined) tab[i-1]=0;
             if (tab[i-1]!=0) document.getElementById(k + "x" + i).value=tab[i-1];
             else document.getElementById(k + "x" + i).value="";
@@ -77,7 +82,8 @@ function UpMove(){
         tab=[0,0,0,0,0];
         ActualTab(tab, k, 1);
         for (let i=1; i<5; i++){
-            mouved = Move(tab,i-1,0);
+            if (mouved == 0 ) mouved = Move(tab,i-1,0, k, 1);
+            else Move(tab,i-1,0, k, 1);
             if (isNaN(tab[i-1]) || tab[i-1]==undefined) tab[i-1]=0;
             if (tab[i-1]!=0) document.getElementById(i + "x" + k).value=tab[i-1];
             else document.getElementById(i + "x" + k).value="";
@@ -92,7 +98,8 @@ function RightMove(){
         tab=[0,0,0,0,0];
         ActualTab(tab, k, 0);
         for (let i=4; i>0; i--){
-            mouved = Move(tab,i-1,1);
+            if (mouved == 0 ) mouved = Move(tab,i-1,1, k, 0);
+            else Move(tab,i-1,1, k, 0);
             if (isNaN(tab[i-1]) || tab[i-1]==undefined) tab[i-1]=0;
             if (tab[i-1]!=0) document.getElementById(k + "x" + i).value=tab[i-1];
             else document.getElementById(k + "x" + i).value="";
@@ -107,7 +114,8 @@ function DownMove(){
         tab=[0,0,0,0,0];
         ActualTab(tab, k, 1);
         for (let i=4; i>0; i--){
-            mouved = Move(tab,i-1,1);
+            if (mouved == 0 ) mouved = Move(tab,i-1,1, k, 1);
+            else Move(tab,i-1,1, k, 1);
             if (isNaN(tab[i-1]) || tab[i-1]==undefined) tab[i-1]=0;
             if (tab[i-1]!=0) document.getElementById(i + "x" + k).value=tab[i-1];
             else document.getElementById(i + "x" + k).value="";
@@ -131,17 +139,20 @@ function ActualTab(tab, k, direction) {
         }
                 return tab;
 }
-function Move(tab,startIndex,direction){
+function Move(tab,startIndex,direction, line, vertical){
     let mouved=0;
+    //alert(tab + " - " + startIndex + " - " + direction);
     mouved = moveTab(tab,startIndex,direction);
     moveTab(tab,startIndex,direction);
     moveTab(tab,startIndex,direction);
-    if (MergeAdjoin(tab,startIndex,direction)==1) {
-        mouved = moveTab(tab,startIndex,direction);
+    if (MergeAdjoin(tab,startIndex,direction, line, vertical)==1) {
+        moveTab(tab,startIndex,direction);
+        mouved = 1;
     }
+    //alert("zwrócono " + mouved);
     return mouved;
 }
-function MergeAdjoin(tab, startIndex, direction) {
+function MergeAdjoin(tab, startIndex, direction, line, vertical) {
     //direction = 0 - left or down
     //direction = 1 - right or up
     switch (direction){
@@ -155,8 +166,14 @@ function MergeAdjoin(tab, startIndex, direction) {
             break;
     }
     let returnedValue=0;
-    while (i>=0 && i<4) {;
+    while (i>=0 && i<4) {
         if (tab[i]==tab[i+index] && tab[i]!=0) {
+            //alert(line + " " + vertical);
+            let box;
+            if (vertical==0) box=document.getElementById(line + "x" + tab[i]);
+            else box=document.getElementById(tab[i] + "x" + line);
+            //let box=document.getElementById(line + "x" + tab[i]);
+            //bigBox(box);
             tab[i]=2*tab[i];
             tab[i+index]=0;
             returnedValue=1;
@@ -168,7 +185,8 @@ function MergeAdjoin(tab, startIndex, direction) {
 function moveTab(tab,startIndex, direction){
     //direction = 0 - left or down
     //direction = 1 - right or up
-    //let mouved = 0;
+    let mouved=0;
+    let oldTab=tab;
     switch (direction){
         case 0:
             i=startIndex;
@@ -188,9 +206,8 @@ function moveTab(tab,startIndex, direction){
         }
         i=i+index;
     }
-    //MergeAdjoin(tab,direction,startIndex);
+    if (oldTab != tab) mouved = 1;
     return mouved;
-    
 }
 function moveBoxesLeft() {
     var moved=0;

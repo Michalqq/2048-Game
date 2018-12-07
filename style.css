@@ -15,32 +15,37 @@ p2.ex1 {
     margin-top: 180px;
 }
 .div1{
-    margin-top: 5px;
+    margin-top: 15px;
     background-color: grey;
-    width: 395px;
-    height: 405px;
-    -webkit-box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
-    -moz-box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
-    box-shadow: 10px 10px 97px 0px rgba(0,0,0,0.85);
+    width: 385px;
+    height: 375px;
+    -webkit-box-shadow: 0px 0px 50px 7px rgba(0,0,0,0.85);
+    -moz-box-shadow:0px 0px 50px 7px rgba(0,0,0,0.85);
+    box-shadow: 0px 0px 50px 7px rgba(0,0,0,0.85);
     border-radius: 10px;
 }
 .box {
-    display:grid;
+    display:inline;
     justify-content: center;
     border-radius: 10px;
     background-color: lightblue;
     top:100px;
+    margin-left: 10px;
+    margin-top: 10px;
     width: 80px;
     height: 80px;
     font-size: 40px;
     text-align: center;
 }
 .boX {
+    display:inline;
+    justify-content: center;
     border-radius: 20px;
-    background-color: lightblue;
+    background-color: red;
     width: 90px;
     height: 90px;
-    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
     font-size: 55px;
     text-align: center;
 }
